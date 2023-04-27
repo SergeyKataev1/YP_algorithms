@@ -1,5 +1,7 @@
-#86406205
-def get_distance(houses, n):
+from typing import List, Tuple
+
+
+def get_distance(houses: List[int], n: int) -> list:
     distanse = [n] * n
     zero = [i for i in range(n) if houses[i] == 0]
     first_zero = zero[0]
@@ -20,7 +22,7 @@ def get_distance(houses, n):
     return distanse
 
 
-def read_input():
+def read_input() -> Tuple[List[int], int]:
     n = int(input())
     houses = list(map(int, input().strip().split()))
     return houses, n

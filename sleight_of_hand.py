@@ -1,5 +1,7 @@
-#86449578
-def get_max_points(matrix, k):
+from typing import List, Tuple
+
+
+def get_max_points(matrix: List[str], k: int) -> int:
     points = 0
     count = [0] * 16
     for number in matrix:
@@ -11,7 +13,7 @@ def get_max_points(matrix, k):
     return points
 
 
-def read_input():
+def read_input() -> Tuple[List[str], int]:
     k = int(input())
     matrix = [i for i in range(4) for i in input().strip()]
     return matrix, k
