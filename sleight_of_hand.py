@@ -1,4 +1,4 @@
-#86525525
+#86593385
 from typing import List, Tuple
 
 
@@ -17,7 +17,7 @@ def get_max_points(matrix: List[str], k: int) -> int:
 
 def read_input() -> Tuple[List[str], int]:
     k = int(input())
-    matrix = [i for i in range(4) for i in input().strip()]
+    matrix = [number for number in range(4) for number in input().strip()]
     return matrix, k
 
 
