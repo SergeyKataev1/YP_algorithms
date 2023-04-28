@@ -8,18 +8,18 @@ def get_distance(houses: List[int], n: int) -> list:
     first_zero = zero[0]
     last_zero = zero[-1]
 
-    for i in range(first_zero, n):
-        if houses[i] != 0:
-            distanse[i] = distanse[i - 1] + 1
+    for number in range(first_zero, n):
+        if houses[number] != 0:
+            distanse[number] = distanse[number - 1] + 1
         else:
-            distanse[i] = 0
-    for i in range(last_zero, first_zero, -1):
-        if houses[i] != 0:
-            distanse[i] = min(distanse[i], distanse[i + 1] + 1)
+            distanse[number] = 0
+    for number in range(last_zero, first_zero, -1):
+        if houses[number] != 0:
+            distanse[number] = min(distanse[number], distanse[number + 1] + 1)
         else:
-            distanse[i] = 0
-    for i in range(first_zero - 1, -1, -1):
-        distanse[i] = distanse[i + 1] + 1
+            distanse[number] = 0
+    for number in range(first_zero - 1, -1, -1):
+        distanse[number] = distanse[number + 1] + 1
     return distanse
 
 
