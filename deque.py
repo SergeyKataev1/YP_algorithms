@@ -1,83 +1,82 @@
-#87194300
-
 from typing import Tuple
 
 
-class NoItemsError(Exception):
-        pass
+class FullDekError(Exception):
+    pass
 
 
-class StackOverflowError(Exception):
-        pass
+class EmptyDekError(Exception):
+    pass
 
 
 class Deque:
-
     def __init__(self, max_size):
         self.__queue = [None] * max_size
-        self.__max_size = max_size
+        self.__max_n = max_size
         self.__head = 0
-        self.__tail = -1
+        self.__tail = 0
         self.__size = 0
+
+    def is_empty(self):
+        return self.__size <= 0
+
+    def is_full(self):
+        return self.__size >= self.__max_n
+
+    def count_index(self, current_index, minus=1):
+        result = (current_index + 1 * minus) % self.__max_n
+        return result
 
     def push_back(self, item):
         if self.is_full():
-            raise StackOverflowError
-        self.__tail = (self.__tail + 1) % self.__max_size
-        self.__queue[self.__tail] = item
-        self.__size += 1
+            raise FullDekError
+        else:
+            self.__queue[self.__tail] = item
+            self.__tail = self.count_index(self.__tail)
+            self.__size += 1
 
     def push_front(self, item):
         if self.is_full():
-            raise StackOverflowError
-        self.__head = (self.__head - 1) % self.__max_size
-        self.__queue[self.__head] = item
-        self.__size += 1
+            raise FullDekError
+        else:
+            new_head = self.count_index(self.__head, -1)
+            self.__queue[new_head] = item
+            self.__size += 1
+            self.__head = new_head
 
     def pop_front(self):
         if self.is_empty():
-            raise NoItemsError
+            raise EmptyDekError
         item = self.__queue[self.__head]
-        self.__head = (self.__head + 1) % self.__max_size
+        self.__queue[self.__head] = None
+        self.__head = self.count_index(self.__head)
         self.__size -= 1
         return item
 
     def pop_back(self):
         if self.is_empty():
-            raise NoItemsError
-        item = self.__queue[self.__tail]
-        self.__tail = (self.__tail - 1) % self.__max_size
+            raise EmptyDekError
+        item = self.__queue[self.__tail-1]
+        self.__queue[self.__tail-1] = None
+        self.__tail = self.count_index(self.__tail, -1)
         self.__size -= 1
         return item
 
-    def is_empty(self):
-        return self.__size == 0
-
-    def is_full(self):
-        return self.__size == self.__max_size  
-
-
-def read_inputs() -> Tuple[int, int]:
+def read_input() -> Tuple[int, int]:
+    num = int(input())
     n = int(input())
-    max_size = int(input())
-    return n, max_size
-
-def item_input():
-    item = input().split()
-    return item
-
-
-def main():
-    n, max_size = read_inputs()
-    deck = Deque(max_size)
-    for i in range(n):
+    queue = Deque(n)
+    for num_command in range(num):
+        command, *value = [x for x in input().strip().split()]
         try:
-            item = item_input()
-            print(getattr(deck, item[0])()) if len(item) == 1 else getattr(
-                deck, item[0])(item[1])
-        except (NoItemsError, StackOverflowError):
+            a = getattr(queue, command)(*value)
+            if a:
+                print(a)
+        except FullDekError:
+            print('error')
+        except EmptyDekError:
             print('error')
 
 
-if __name__ == '__main__':
-    main()
+if __name__ == "__main__":
+    read_input()
