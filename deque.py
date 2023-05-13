@@ -4,16 +4,14 @@ from typing import Tuple
 
 
 class NoItemsError(Exception):
-    def __init__(self):
         pass
 
 
 class StackOverflowError(Exception):
-    def __init__(self):
         pass
 
 
-class Deck:
+class Deque:
 
     def __init__(self, max_size):
         self.__queue = [None] * max_size
@@ -56,7 +54,7 @@ class Deck:
         return self.__size == 0
 
     def is_full(self):
-        return self.__size == self.__max_size
+        return self.__size == self.__max_size  
 
 
 def read_inputs() -> Tuple[int, int]:
@@ -64,13 +62,17 @@ def read_inputs() -> Tuple[int, int]:
     max_size = int(input())
     return n, max_size
 
+def item_input():
+    item = input().split()
+    return item
+
 
 def main():
     n, max_size = read_inputs()
-    deck = Deck(max_size)
+    deck = Deque(max_size)
     for i in range(n):
         try:
-            item = input().split()
+            item = item_input()
             print(getattr(deck, item[0])()) if len(item) == 1 else getattr(
                 deck, item[0])(item[1])
         except (NoItemsError, StackOverflowError):
