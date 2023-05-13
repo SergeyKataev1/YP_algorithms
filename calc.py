@@ -1,44 +1,45 @@
-#87195289
+import operator
 
-OPERATIONS = {
-    '+': lambda x, y: x + y,
-    '-': lambda x, y: y - x,
-    '*': lambda x, y: x * y,
-    '/': lambda x, y: y // x
+OPERATORS = {
+    '+': operator.add,
+    '-': operator.sub,
+    '*': operator.mul,
+    '/': operator.floordiv
 }
 
 
 class Stack:
-
     def __init__(self):
-        self.__operands = []
-        self.__size = 0
-
-    def is_empty(self):
-        return self.__size == 0
+        self.array = []
+        self.size = 0
 
     def push(self, item):
-        self.__size += 1
-        self.__operands.append(item)
+        self.size += 1
+        self.array.append(item)
 
     def pop(self):
-        if self.is_empty():
-            return 'error'
-        self.__size -= 1
-        return self.__operands.pop()
+        if self.is_empty:
+            raise IndexError
+        self.size -= 1
+        return self.array.pop()
+
+    @property
+    def is_empty(self):
+        return self.size == 0
 
 
-def main():
+def calculator(input_data):
+    
     stack = Stack()
-
-    for item in input().split():
-        if item.lstrip('-').isdigit():
-            stack.push(int(item))
-        else:
-            stack.push(OPERATIONS[item](stack.pop(), stack.pop()))
-
-    print(stack.pop())
+    for item in input_data:
+        operation = OPERATORS.get(item)
+        stack.push(
+            operation(*[stack.pop(), stack.pop()][::-1])
+            if operation else int(item)
+        )
+    return stack.pop()
 
 
 if __name__ == '__main__':
-    main()
+    input_data = input().split()
+    print(calculator(input_data))
