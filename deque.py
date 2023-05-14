@@ -66,6 +66,10 @@ class Deque:
 def read_input() -> Tuple[int, int]:
     num = int(input())
     n = int(input())
+    return num, n
+
+def main():
+    num , n = read_input()
     queue = Deque(n)
     for num_command in range(num):
         command, *value = [x for x in input().strip().split()]
@@ -80,4 +84,4 @@ def read_input() -> Tuple[int, int]:
 
 
 if __name__ == "__main__":
-    read_input()
+    main()
