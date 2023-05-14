@@ -29,7 +29,7 @@ class Stack:
         return self.size == 0
 
 
-def calculator(input_data):
+def main(input_data):
     
     stack = Stack()
     for item in input_data:
@@ -43,4 +43,4 @@ def calculator(input_data):
 
 if __name__ == '__main__':
     input_data = input().split()
-    print(calculator(input_data))
+    print(main(input_data))
