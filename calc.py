@@ -29,10 +29,10 @@ class Stack:
         return self.size == 0
 
 
-def main(input_data):
+def calculator(x):
     
     stack = Stack()
-    for item in input_data:
+    for item in x:
         operation = OPERATORS.get(item)
         stack.push(
             operation(*[stack.pop(), stack.pop()][::-1])
@@ -43,4 +43,4 @@ def main(input_data):
 
 if __name__ == '__main__':
     input_data = input().split()
-    print(main(input_data))
+    print(calculator(input_data))
