@@ -68,15 +68,18 @@ def read_input() -> Tuple[int, int]:
     n = int(input())
     return num, n
 
+def item_input():
+    item = input().split()
+    return item
+
 def main():
     num , n = read_input()
     queue = Deque(n)
     for num_command in range(num):
-        command, *value = [x for x in input().strip().split()]
         try:
-            a = getattr(queue, command)(*value)
-            if a:
-                print(a)
+            item = item_input()
+            print(getattr(queue, item[0])()) if len(item) == 1 else getattr(
+                queue, item[0])(item[1])
         except FullDekError:
             print('error')
         except EmptyDekError:
