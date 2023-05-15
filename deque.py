@@ -2,11 +2,11 @@
 from typing import Tuple
 
 
-class FullDekError(Exception):
+class FullDequeError(Exception):
     pass
 
 
-class EmptyDekError(Exception):
+class EmptyDequeError(Exception):
     pass
 
 
@@ -30,7 +30,7 @@ class Deque:
 
     def push_back(self, item):
         if self.is_full():
-            raise FullDekError
+            raise FullDequeError
         else:
             self.__queue[self.__tail] = item
             self.__tail = self.count_index(self.__tail)
@@ -38,7 +38,7 @@ class Deque:
 
     def push_front(self, item):
         if self.is_full():
-            raise FullDekError
+            raise FullDequeError
         else:
             new_head = self.count_index(self.__head, -1)
             self.__queue[new_head] = item
@@ -47,7 +47,7 @@ class Deque:
 
     def pop_front(self):
         if self.is_empty():
-            raise EmptyDekError
+            raise EmptyDequeError
         item = self.__queue[self.__head]
         self.__queue[self.__head] = None
         self.__head = self.count_index(self.__head)
@@ -56,7 +56,7 @@ class Deque:
 
     def pop_back(self):
         if self.is_empty():
-            raise EmptyDekError
+            raise EmptyDequeError
         item = self.__queue[self.__tail-1]
         self.__queue[self.__tail-1] = None
         self.__tail = self.count_index(self.__tail, -1)
@@ -82,9 +82,9 @@ def main():
                 queue, item[0])(item[1])
             if a:
                 print(a)
-        except FullDekError:
+        except FullDequeError:
             print('error')
-        except EmptyDekError:
+        except EmptyDequeError:
             print('error')
 
 
