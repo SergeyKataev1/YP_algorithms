@@ -78,8 +78,10 @@ def main():
     for num_command in range(num):
         try:
             item = item_input()
-            print(getattr(queue, item[0])()) if len(item) == 1 else getattr(
+            a = (getattr(queue, item[0])()) if len(item) == 1 else getattr(
                 queue, item[0])(item[1])
+            if a:
+                print(a)
         except FullDekError:
             print('error')
         except EmptyDekError:
