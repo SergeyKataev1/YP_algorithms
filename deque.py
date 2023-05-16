@@ -72,8 +72,7 @@ def item_input():
     item = input().split()
     return item
 
-def main():
-    num , n = read_input()
+def commands(num, n):
     queue = Deque(n)
     for num_command in range(num):
         try:
@@ -86,6 +85,10 @@ def main():
             print('error')
         except EmptyDequeError:
             print('error')
+
+def main():
+    num , n = read_input()
+    commands(num, n)
 
 
 if __name__ == "__main__":
