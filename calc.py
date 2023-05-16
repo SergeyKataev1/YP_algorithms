@@ -1,4 +1,4 @@
-#87231500
+#87303224
 import operator
 
 OPERATORS = {
