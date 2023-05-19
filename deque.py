@@ -68,15 +68,11 @@ def read_input() -> Tuple[int, int]:
     n = int(input())
     return num, n
 
-def item_input():
-    item = input().split()
-    return item
-
 def commands(num, n):
     queue = Deque(n)
     for num_command in range(num):
         try:
-            item = item_input()
+            item = input().split()
             a = (getattr(queue, item[0])()) if len(item) == 1 else getattr(
                 queue, item[0])(item[1])
             if a:
