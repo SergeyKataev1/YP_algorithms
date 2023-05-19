@@ -68,8 +68,7 @@ def read_input() -> Tuple[int, int]:
     n = int(input())
     return num, n
 
-def commands(num, n):
-    queue = Deque(n)
+def commands(num, queue):
     for num_command in range(num):
         try:
             item = input().split()
@@ -83,8 +82,10 @@ def commands(num, n):
             print('error')
 
 def main():
-    num , n = read_input()
-    commands(num, n)
+    num, n = read_input()
+    queue = Deque(n)
+
+    commands(num, queue)
 
 
 if __name__ == "__main__":
