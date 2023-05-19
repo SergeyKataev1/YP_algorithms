@@ -66,12 +66,14 @@ class Deque:
 def read_input() -> Tuple[int, int]:
     num = int(input())
     n = int(input())
-    return num, n
+    data = [input() for _ in range(num)]
+    return n, data
 
-def commands(num, queue):
-    for num_command in range(num):
+def commands(n, data):
+    queue = Deque(n)
+    for num_command in data:
         try:
-            item = input().split()
+            item = num_command.split()
             a = (getattr(queue, item[0])()) if len(item) == 1 else getattr(
                 queue, item[0])(item[1])
             if a:
@@ -82,10 +84,9 @@ def commands(num, queue):
             print('error')
 
 def main():
-    num, n = read_input()
-    queue = Deque(n)
+    n, data = read_input()
 
-    commands(num, queue)
+    commands(n, data)
 
 
 if __name__ == "__main__":
