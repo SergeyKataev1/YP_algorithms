@@ -1,4 +1,4 @@
-#87303224
+#87504974
 import operator
 
 OPERATORS = {
@@ -30,7 +30,6 @@ class Stack:
 
 
 def calculator(array_with_numbers_and_operators):
-    # Не могу придумать УДАЧНОЕ название
     
     stack = Stack()
     for item in array_with_numbers_and_operators:
