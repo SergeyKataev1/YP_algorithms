@@ -29,11 +29,11 @@ class Stack:
         return self.size == 0
 
 
-def calculator(array_with_numbers_and_operands):
+def calculator(array_with_numbers_and_operators):
     # Не могу придумать УДАЧНОЕ название
     
     stack = Stack()
-    for item in array_with_numbers_and_operands:
+    for item in array_with_numbers_and_operators:
         operation = OPERATORS.get(item)
         stack.push(
             operation(*[stack.pop(), stack.pop()][::-1])
