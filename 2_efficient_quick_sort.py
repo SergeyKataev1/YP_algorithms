@@ -1,9 +1,9 @@
-def quicksort(users, lf, rg):
-    if lf >= rg:
+def quicksort(users, lft, rgt):
+    if lft >= rgt:
         return -1
 
-    left, right = lf, rg
-    pivot = users[lf]
+    left, right = lft, rgt
+    pivot = users[lft]
 
     while left <= right:
         while users[left] < pivot:
@@ -15,8 +15,8 @@ def quicksort(users, lf, rg):
             left += 1
             right -= 1
 
-    quicksort(users, lf, right)
-    quicksort(users, left, rg)
+    quicksort(users, lft, right)
+    quicksort(users, left, rgt)
 
 
 def data_sort(users):
@@ -33,7 +33,7 @@ def read_input():
 
 def main():
     users = read_input()
-    quicksort(users, lf=0, rg=len(users) - 1)
+    quicksort(users, lft=0, rgt=len(users) - 1)
     for username in users:
         print(username[2])
 
