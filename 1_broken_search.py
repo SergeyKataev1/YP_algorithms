@@ -1,5 +1,5 @@
 #87544339
-def broken_search(nums, target):
+def broken_search(nums:list, target:int):
     start_index = 0
     end_index = len(nums) - 1
 
@@ -20,12 +20,3 @@ def broken_search(nums, target):
             else:
                 end_index = midl_index - 1
     return -1
-
-
-def test():
-    arr = [19, 21, 100, 101, 1, 4, 5, 7, 12]
-    assert broken_search(arr, 5) == 6
-
-
-if __name__ == '__main__':
-    test()
