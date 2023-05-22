@@ -1,5 +1,5 @@
 #87573211
-def quicksort(users, lft, rgt):
+def quicksort(users:list, lft:int, rgt:int):
     if lft >= rgt:
         return -1
 
@@ -20,7 +20,7 @@ def quicksort(users, lft, rgt):
     quicksort(users, left, rgt)
 
 
-def data_sort(users):
+def data_sort(users:list):
     users[1] = -int(users[1])
     users[2] = int(users[2])
     return [users[1], users[2], users[0]]
