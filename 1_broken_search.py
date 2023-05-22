@@ -1,4 +1,4 @@
-#87544339
+#87586367
 def broken_search(nums:list, target:int):
     start_index = 0
     end_index = len(nums) - 1
